@@ -25,7 +25,8 @@ class Stack:
         if (self.check_empty()):
             return "stack is empty"
         pop_item = self.stack[self.top]
-        self.stack = self.stack[:self.top]
+        self.stack[self.top] = None
+        self.top -= 1
         return pop_item
 
 
@@ -35,5 +36,13 @@ if __name__ == "__main__":
     stack.push(str(2))
     stack.push(str(3))
     print("poped item: " + stack.pop())
-    print("stack after poping an element: " + ", ".join([x for x in stack.stack]))
     print(stack.stack)
+    print(stack.top)
+    print("poped item: " + stack.pop())
+    print(stack.stack)
+    print(stack.top)
+    print("poped item: " + stack.pop())
+    print(stack.stack)
+    print(stack.top)
+    print(stack.check_empty())
+    print(stack.check_full())
