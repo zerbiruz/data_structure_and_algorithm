@@ -1,20 +1,26 @@
-from pip import main
-
-
 class Stack:
 
-    def __init__(self):
+    def __init__(self, k):
         self.top = -1
-        self.stack = []
+        self.size = k
+        self.stack = [None] * k
 
     def check_empty(self):
         return self.top == -1
 
-    def push(self, item):
-        self.stack.append(item)
-        self.top += 1
-        print("pushed item: " + item)
+    def check_full(self):
+        count = 0
+        for item in self.stack:
+            if item != None:
+                count += 1
+        return count == self.size
 
+    def push(self, item):
+        self.top += 1
+        self.stack[self.top] = item
+        print("pushed item: " + str(item))
+
+    # incorrect algorithm
     def pop(self):
         if (self.check_empty()):
             return "stack is empty"
@@ -24,10 +30,10 @@ class Stack:
 
 
 if __name__ == "__main__":
-    stack = Stack()
+    stack = Stack(5)
     stack.push(str(1))
     stack.push(str(2))
     stack.push(str(3))
     print("poped item: " + stack.pop())
     print("stack after poping an element: " + ", ".join([x for x in stack.stack]))
-    
+    print(stack.stack)
